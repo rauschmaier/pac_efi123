@@ -6,76 +6,64 @@ public class Main extends PApplet {
 	int x;
 	int y;
 	int diameter;
-	int futterX[];
-	int futterY[];
-	int anzFutter;
-	boolean isVisible[];
-
+	int futterX;
+	int futterY;
+	boolean isVisible;
 	public static void main(String[] args) {
 		PApplet.main("processingMaven.Main");
 	}
 
 	public void settings() {
 		size(500, 500);
-
 	}
 
 	public void setup() {
 		background(255);
 		x = 300;
 		y = 300;
-
-		diameter = 50;
-		anzFutter = 10;
-		futterX = new int[anzFutter];
-		futterY = new int[anzFutter];
-		isVisible = new boolean[anzFutter];
-		for (int i = 0; i < anzFutter; i++) {
-			futterX[i] = (int) (Math.random() * width);
-			futterY[i] = (int) (Math.random() * height);
-			isVisible[i] = true;
-		}
-
+		isVisible= true;
+		diameter=50;
+		futterX=(int)(Math.random()*width);
+		futterY=(int)(Math.random()*height);
 	}
 
 	public void draw() {
-		background(50, 34, 88);
-		fill(0, 255, 255);
-		for (int i = 0; i < anzFutter; i++) {
-			if (isVisible[i]) {
-				ellipse(futterX[i], futterY[i], 20, 20);
-				if (dist(futterX[i], futterY[i], x, y) < diameter / 2) {
-					isVisible[i] = false;
-				}
-			}
+		background(50,34,88);
+		fill(0,255,255);
+		if(isVisible) {
+			ellipse(futterX, futterY, 20, 20);
 		}
-
-		ellipse(x, y, diameter, diameter);
 		
-
+		ellipse(x, y, diameter, diameter);
+		if(dist(futterX, futterY, x, y)<diameter/2) {
+			isVisible=false;
+		}
+		
 	}
 
-	public void keyPressed() {
 
+
+	public void keyPressed() {
+		
 		switch (key) {
 		case 'a':
-			x -= 30;
-			x = constrain(x, diameter / 2, width - diameter / 2);
+			x-=30;
+			x=constrain(x, diameter/2, width-diameter/2);
 			println(key);
 			break;
 		case 's':
-			y += 20;
-			y = constrain(y, diameter / 2, height - diameter / 2);
+			y+=20;
+			y=constrain(y, diameter/2, height-diameter/2);
 			println(key);
 			break;
 		case 'd':
-			x += 20;
-			x = constrain(x, diameter / 2, width - diameter / 2);
+			x+=20;
+			x=constrain(x, diameter/2, width-diameter/2);
 			println(key);
 			break;
 		case 'w':
-			y -= 30;
-			y = constrain(y, diameter / 2, height - diameter / 2);
+			y-=30;
+			y=constrain(y, diameter/2, height-diameter/2);
 			println(key);
 			break;
 		default:
