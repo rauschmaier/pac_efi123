@@ -21,7 +21,6 @@ public class Main extends PApplet {
 		background(255);
 		x = 300;
 		y = 300;
-		isVisible= true;
 		diameter=50;
 		futterX=(int)(Math.random()*width);
 		futterY=(int)(Math.random()*height);
@@ -30,14 +29,8 @@ public class Main extends PApplet {
 	public void draw() {
 		background(50,34,88);
 		fill(0,255,255);
-		if(isVisible) {
-			ellipse(futterX, futterY, 20, 20);
-		}
-		
+	
 		ellipse(x, y, diameter, diameter);
-		if(dist(futterX, futterY, x, y)<diameter/2) {
-			isVisible=false;
-		}
 		
 	}
 
