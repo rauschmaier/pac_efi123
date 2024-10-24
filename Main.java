@@ -22,6 +22,7 @@ public class Main extends PApplet {
 		x = 300;
 		y = 300;
 		diameter=50;
+		isVisible=true;
 		futterX=(int)(Math.random()*width);
 		futterY=(int)(Math.random()*height);
 	}
@@ -29,8 +30,13 @@ public class Main extends PApplet {
 	public void draw() {
 		background(50,34,88);
 		fill(0,255,255);
-	
 		ellipse(x, y, diameter, diameter);
+		if(dist(x,y,futterX,futterY)<diameter/2) {
+			isVisible=false;
+		}
+		if(isVisible) {
+			ellipse(futterX,futterY,10,10);
+		}
 		
 	}
 
@@ -40,22 +46,22 @@ public class Main extends PApplet {
 		
 		switch (key) {
 		case 'a':
-			x-=30;
+			x-=1;
 			x=constrain(x, diameter/2, width-diameter/2);
 			println(key);
 			break;
 		case 's':
-			y+=20;
+			y+=1;
 			y=constrain(y, diameter/2, height-diameter/2);
 			println(key);
 			break;
 		case 'd':
-			x+=20;
+			x+=1;
 			x=constrain(x, diameter/2, width-diameter/2);
 			println(key);
 			break;
 		case 'w':
-			y-=30;
+			y-=1;
 			y=constrain(y, diameter/2, height-diameter/2);
 			println(key);
 			break;
